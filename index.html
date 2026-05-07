@@ -199,7 +199,7 @@
     document.getElementById("authMsg").innerText = "Account created";
   }
 
-  // LOGIN (SIDEBAR FIX APPLIED)
+  // LOGIN (with contact array fix)
   function login() {
     let user = document.getElementById("loginUser").value.trim();
     let pass = document.getElementById("loginPass").value;
@@ -213,13 +213,15 @@
 
     currentUser = user;
 
+    // ⭐ FIX: Ensure contacts array exists
+    if (!users[currentUser].contacts) {
+      users[currentUser].contacts = [];
+    }
+
     users[user].online = true;
     saveUsers(users);
 
-    // Hide login box
     document.getElementById("authBox").style.display = "none";
-
-    // SHOW SIDEBAR + MAIN CHAT AREA
     document.getElementById("sidebar").style.display = "flex";
     document.getElementById("main").style.display = "block";
 
