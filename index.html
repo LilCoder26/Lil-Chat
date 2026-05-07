@@ -14,6 +14,7 @@
       margin: 0;
       padding: 0;
       display: flex;
+      flex-direction: row;
       height: 100vh;
       overflow: hidden;
     }
@@ -124,7 +125,7 @@
 <body>
 
 <!-- SIDEBAR -->
-<div id="sidebar">
+<div id="sidebar" style="display:none;">
   <h2>Contacts</h2>
   <button onclick="showAddContact()">Add Contact</button>
 
@@ -138,7 +139,7 @@
 </div>
 
 <!-- MAIN CHAT AREA -->
-<div id="main">
+<div id="main" style="display:none;">
   <h1 id="welcome"></h1>
 
   <h3>Chat</h3>
@@ -198,7 +199,7 @@
     document.getElementById("authMsg").innerText = "Account created";
   }
 
-  // LOGIN
+  // LOGIN (SIDEBAR FIX APPLIED)
   function login() {
     let user = document.getElementById("loginUser").value.trim();
     let pass = document.getElementById("loginPass").value;
@@ -215,7 +216,10 @@
     users[user].online = true;
     saveUsers(users);
 
+    // Hide login box
     document.getElementById("authBox").style.display = "none";
+
+    // SHOW SIDEBAR + MAIN CHAT AREA
     document.getElementById("sidebar").style.display = "flex";
     document.getElementById("main").style.display = "block";
 
